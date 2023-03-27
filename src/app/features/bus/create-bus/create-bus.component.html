@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 bg-light d-flex flex-column align-items-center justify-content-center">
+            <div class="list-group">
+                <a routerLink="/dashboard" class="list-group-item" routerLinkActive="active">Dashboard</a>
+                <a routerLink="/gestion-bus" class="list-group-item" >Liste Buses</a>
+                <a routerLink="/gestion-bus/create" class="list-group-item" routerLinkActive="active">Ajouter Bus</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="container">
+                <h1>Ajouter un Bus</h1>
+                <form [formGroup]="busForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+                        <label for="busNumber" class="form-label">Numéro de Bus</label>
+                        <input type="text" class="form-control" id="busNumber" formControlName="busNumber">
+                    </div>
+                    <div class="mb-3">
+                        <label for="travelDate" class="form-label">Date de voyage</label>
+                        <input type="date" class="form-control" id="travelDate" formControlName="travelDate">
+                    </div>
+                    <div class="mb-3">
+                        <label for="departureTime" class="form-label">Heure de départ</label>
+                        <input type="time" class="form-control" id="departureTime" formControlName="departureTime">
+                    </div>
+                    <div class="mb-3">
+                        <label for="departurePoint" class="form-label">Point de départ</label>
+                        <input type="text" class="form-control" id="departurePoint" formControlName="departurePoint">
+                    </div>
+                    <div class="mb-3">
+                        <label for="arrivalPoint" class="form-label">Point d'arrivée</label>
+                        <input type="text" class="form-control" id="arrivalPoint" formControlName="arrivalPoint">
+                    </div>
+                    <div class="mb-3">
+                        <label for="numberOfSeats" class="form-label">Nombre de places</label>
+                        <input type="number" class="form-control" id="numberOfSeats" formControlName="numberOfSeats">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Prix</label>
+                        <input type="number" class="form-control" id="price" formControlName="price">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter Bus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
