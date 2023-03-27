@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 bg-light d-flex flex-column align-items-center justify-content-center">
+            <div class="list-group">
+                <a routerLink="/dashboard" class="list-group-item" routerLinkActive="active">Dashboard</a>
+                <a routerLink="/gestion-reservations" class="list-group-item">Liste des Réservations</a>
+                <a routerLink="/gestion-reservations/make" class="list-group-item" routerLinkActive="active">Créer Reservation</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="container">
+                <h1>Faire une réservation</h1>
+                <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+                        <label for="clientId" class="form-label">Client</label>
+                        <select class="form-control" id="clientId" formControlName="clientId" required>
+                            <option *ngFor="let client of clients" [ngValue]="client.id">{{client.name}}</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="reservationForm.get('clientId')!.invalid &&
+                        reservationForm.get('clientId')!.touched">
+                            Veuillez sélectionner un client.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="travelDate" class="form-label">Date de voyage</label>
+                        <input type="date" class="form-control" id="travelDate" formControlName="travelDate" required>
+                        <div class="invalid-feedback" *ngIf="reservationForm.get('travelDate')!.invalid &&
+                        reservationForm.get('travelDate')!.touched">
+                            La date de voyage est requise.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="buses" class="form-label">Bus</label>
+                        <select class="form-control" id="buses" formControlName="buses" required multiple>
+                            <option *ngFor="let bus of buses" [ngValue]="bus"
+                                    (click)="addBuses(bus)" >{{bus.busNumber}} ( {{bus.departurePoint}} ===>
+                                {{bus.arrivalPoint}} )</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="reservationForm.get('buses')!.invalid &&
+                        reservationForm.get('buses')!.touched">
+                            Veuillez sélectionner un bus.
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

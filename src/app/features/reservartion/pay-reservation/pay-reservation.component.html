@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Reservation Details</h2>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Travel Details</h5>
+                    <div *ngFor="let bus of reservation.buses">
+                        <p class="card-text">Departure Point: {{ bus.departurePoint }}</p>
+                        <p class="card-text">Arrival Point: {{ bus.arrivalPoint }}</p>
+                        <p class="card-text">Travel Date: {{ bus.travelDate }}</p>
+                        <p class="card-text">Price: {{ bus.price }}</p>
+                        <hr>
+                    </div>
+                    <p *ngIf="isDiscountApplied" class="card-text text-success">Discount appliqué
+                        (5%): (Nouveau prix: {{ reservation.totalCost }})</p>
+                    <p class="card-text">Total prix: {{ reservation.totalCost}}</p>
+                </div>
+            </div>
+
+            <h2>Payment Information</h2>
+            <div class="form-group">
+                <label for="paymentMethod">Payment Method:</label>
+                <select class="form-control" id="paymentMethod" [(ngModel)]="paymentMethod" (ngModelChange)="onPaymentMethodChange()">
+                    <option value="paypal">PayPal</option>
+                    <option value="credit_card">Credit Card</option>
+                </select>
+            </div>
+
+            <div *ngIf="paymentMethod === 'paypal'" class="form-group">
+                <label for="paypalEmail">PayPal Email:</label>
+                <input type="email" class="form-control" id="paypalEmail" [(ngModel)]="paypalEmail" name="paypalEmail">
+            </div>
+
+            <div *ngIf="paymentMethod === 'credit_card'">
+                <div class="form-group">
+                    <label for="creditCardNumber">Card Number:</label>
+                    <input type="text" class="form-control" id="creditCardNumber" [(ngModel)]="creditCardNumber" name="creditCardNumber">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="creditCardMonth">Expiration Month:</label>
+                        <input type="text" class="form-control" id="creditCardMonth" [(ngModel)]="creditCardMonth" name="creditCardMonth">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="creditCardYear">Expiration Year:</label>
+                        <input type="text" class="form-control" id="creditCardYear" [(ngModel)]="creditCardYear" name="creditCardYear">
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
+        </div>
+    </div>
+</div>

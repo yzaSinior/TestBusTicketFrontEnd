@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 bg-light d-flex flex-column align-items-center justify-content-center">
+            <div class="list-group">
+                <a routerLink="/dashboard" class="list-group-item" routerLinkActive="active">Dashboard</a>
+                <a routerLink="/gestion-reservations" class="list-group-item" routerLinkActive="active">Liste
+                    Reservations</a>
+                <a routerLink="/gestion-reservations/make" class="list-group-item" routerLinkActive="active">Créer
+                    Reservation</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="container">
+                <h1>Liste des Reservation</h1>
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Client</th>
+                        <th scope="col">Voyage Date</th>
+                        <th scope="col">Total Cost</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let reservation of reservations">
+                        <td>{{ reservation.id }}</td>
+                        <td>{{ reservation.client.name }}</td>
+                        <td>{{ reservation.travelDate.join('-') }}</td>
+                        <td>{{ reservation.totalCost }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" *ngIf="!reservation.billGenerated"
+                                    (click)="payReservation(reservation)">Payer</button>
+                            <button class="btn btn-sm btn-danger" *ngIf="!reservation.billGenerated"
+                                    (click)="deleteReservation(reservation)">Supprimer
+                            </button>
+                            <button class="btn btn-sm btn-primary" *ngIf="reservation.billGenerated">Imprimer billet</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
