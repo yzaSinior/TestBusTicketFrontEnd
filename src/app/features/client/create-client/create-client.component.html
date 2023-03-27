@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 bg-light d-flex flex-column align-items-center justify-content-center">
+            <div class="list-group">
+                <a routerLink="/gestion-bus/create" class="list-group-item">Ajouter Bus</a>
+                <a routerLink="/gestion-client" class="list-group-item">Liste Clients</a>
+                <a routerLink="/gestion-client/create" class="list-group-item active">Ajouter Client</a>
+
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="container">
+                <h1>Ajouter un client</h1>
+                <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" required>
+                        <div class="invalid-feedback" *ngIf="clientForm.get('name')!.invalid &&
+                        clientForm.get('name')!.touched">
+                            Le nom est requis.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Adresse email</label>
+                        <input type="email" class="form-control" id="email" formControlName="email" required>
+                        <div class="invalid-feedback" *ngIf="clientForm.get('email')!.invalid &&
+                        clientForm.get('email')!.touched">
+                            Une adresse email valide est requise.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="!clientForm.valid">Enregistrer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

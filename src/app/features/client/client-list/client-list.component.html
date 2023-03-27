@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 bg-light d-flex flex-column align-items-center justify-content-center">
+            <div class="list-group">
+                <a routerLink="/dashboard" class="list-group-item" routerLinkActive="active">Dashboard</a>
+                <a routerLink="/gestion-clients" class="list-group-item" routerLinkActive="active">Liste Clients</a>
+                <a routerLink="/gestion-clients/create" class="list-group-item" routerLinkActive="active">Ajouter Client</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="container">
+                <h1>Liste des Clients</h1>
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let client of clients">
+                        <td>{{ client.name }}</td>
+                        <td>{{ client.email }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" (click)="editClient(client)">Modifier</button>
+                            <button class="btn btn-sm btn-danger" (click)="deleteClient(client)">Supprimer</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

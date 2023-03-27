@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-3">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/gestion-clients">Liste Clients</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/gestion-clients/create">Ajouter un Client</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-header">
+                <h4>Modifier un Client<</h4>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="name">Nom:</label>
+                        <input type="text" class="form-control" formControlName="name" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" formControlName="email" id="email" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="clientForm.invalid">Enregistrer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
